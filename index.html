@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AnđelDragan</title>
+
+<style>
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+    display: block;
+    pointer-events: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- GLAVNI VIDEO -->
+<video
+    id="video"
+    src="AnđelDragan_GitHub.mp4"
+    playsinline
+    preload="auto"
+    loop>
+</video>
+
+<!-- SAMO AUDIO -->
+<audio
+    id="audio"
+    src="videoplayback.m4a"
+    preload="auto"
+    loop>
+</audio>
+
+<script>
+const video = document.getElementById("video");
+const audio = document.getElementById("audio");
+
+let started = false;
+
+function startEverything() {
+    if (started) return;
+    started = true;
+
+    video.controls = false;
+
+    // Video
+    video.muted = true;
+
+    // Audio
+    audio.muted = false;
+    audio.volume = 1;
+
+    // Pokreni oba nakon dodira
+    video.play().catch(() => {});
+    audio.play().catch(() => {});
+}
+
+document.addEventListener("pointerdown", startEverything, {
+    once: true
+});
+</script>
+
+</body>
+</html>
